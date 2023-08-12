@@ -1,0 +1,13 @@
+name: GiftCode
+main: NoobMCBG\GiftCode\GiftCode
+api: 5.0.0
+version: 3.0.0
+author: NoobMCBG, ClickedTran
+
+permissions:
+  giftcode.command:
+   description: Permission for player use code
+   default: true
+  giftcode.command.op:
+   description: Permission for OP
+   default: op

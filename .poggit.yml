@@ -7,7 +7,7 @@ projects:
     path: ""
     icon: icon.jpg
     libs:
-      - src: dktaps-pm-pl/pmforms/pmforms
+      - src: dktapps-pm-pl/pmforms/pmforms
         version: ^2.1.0
       - src: CortexPE/Commando/Commando
         version: ^3.0.0

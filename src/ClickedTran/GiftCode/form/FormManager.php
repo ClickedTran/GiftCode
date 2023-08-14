@@ -10,6 +10,7 @@ use onebone\economyapi\EconomyAPI;
 *use onebone\pointapi\PointAPI;
 */
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
+use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
 
 use ClickedTran\GiftCode\GiftCode;
 

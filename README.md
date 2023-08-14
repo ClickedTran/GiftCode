@@ -1,6 +1,6 @@
 ## 📋General
 
-<img src="https://github.com/ClickedTran/GiftCode/blob/Master/icon.png" align="center">
+<img src="https://github.com/ClickedTran/GiftCode/blob/Master/icon.jpg" align="center">
 
 <br>
 <p align="center">This is a Plugin that allows Admin to generate a giftcode for the server with optional time and rewards (only currencies are supported)</p>

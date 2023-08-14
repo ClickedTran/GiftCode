@@ -22,6 +22,10 @@
 <br>
 
 ## 💬Command & Permissions
-| **COMMANDS** | **ALIASES** | **PERMISSIONS** |
-| --- | --- | --- |
-| `/giftcode` | `/code` | `giftcode.command` |
+| **COMMANDS** | **SUBCOMMAND** | **PERMISSIONS** | **DEFAULT PERMISSION** |
+| --- | --- | --- | --- |
+| |  | `giftcode.command` | `true` |
+| | `create` | `giftcode.command.create` | `op` |
+| `/giftcode` | `remove` | `giftcode.command.remove` | `op` |
+| | `list` | `giftcode.command.list` | `op` |
+| | `help` | `giftcode.command.help` | `op` |

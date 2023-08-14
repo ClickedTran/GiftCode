@@ -17,8 +17,6 @@ use ClickedTran\GiftCode\form\FormManager;
 
 class GiftCodeCommand extends BaseCommand{
 
-	private GiftCode $plugin;
-	
 	public function prepare(): void{
 	  $this->setPermission("giftcode.command");
 	  $this->registerSubcommand(new HelpGiftCodeCommand("help", "Help GiftCode Command"));

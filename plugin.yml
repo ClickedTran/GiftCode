@@ -2,7 +2,7 @@ name: GiftCode
 main: ClickedTran\GiftCode\GiftCode
 api: 5.0.0
 version: 1.0.0
-author: ClickedTran, NoobMCBG
+author: ClickedTran
 
 permissions:
   giftcode.command:

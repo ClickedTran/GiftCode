@@ -1,13 +1,25 @@
 name: GiftCode
-main: NoobMCBG\GiftCode\GiftCode
+main: ClickedTran\GiftCode\GiftCode
 api: 5.0.0
-version: 3.0.0
-author: NoobMCBG, ClickedTran
+version: 1.0.0
+author: ClickedTran, NoobMCBG
 
 permissions:
   giftcode.command:
    description: Permission for player use code
    default: true
-  giftcode.command.op:
-   description: Permission for OP
+  giftcode.command.create:
+   description: Permission for player create giftcode
    default: op
+  giftcode.command.remove:
+   description: Permission for player delete giftcode
+   default: op
+  giftcode.command.help:
+   description: Permission for player sell all command giftcode
+   default: op
+  giftcode.command.list:
+   description: Permission for player see all giftcode
+   default: op
+  giftcode.command.menu:
+   default: op
+   description: Permission for player open menu Giftcode

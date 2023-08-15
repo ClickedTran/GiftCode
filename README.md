@@ -35,7 +35,7 @@
 ## 💬Command & Permission
 | **COMMANDS** | **ALIASES** | **SUBCOMMAND** | **DESCRIPTION** | **PERMISSION** | **DEFAULT** |
 | --- | --- | --- | --- | --- | --- |
-| | | `Used to open menu input giftcode` | `giftcode.command` | `true` |
+| | | | `Used to open menu input giftcode` | `giftcode.command` | `true` |
 | | | `create` | `Used to create new giftcode for data` | `giftcode.command.create` | `op` |
 | `giftcode` | `code` | `remove` | `Used to delete existing giftcodes in the data` | `giftcode.command.remove` | `op` |
 | | | `list` | `Used to see the existing giftcodes in the data` | `giftcode.command.list` | `op` |

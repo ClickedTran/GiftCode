@@ -17,7 +17,6 @@ class ListGiftCodeCommand extends BaseSubCommand {
   }
   
   public function onRun(CommandSender $sender, String $labelUsed, Array $args) : void{
-    assert($sender instanceof Player);
     $all_giftcode = GiftCode::getInstance()->getCode()->getAll();
 	  if($all_giftcode == null){
 	     $sender->sendMessage("§9[ §4ERROR §9] §cThe list of giftcodes is empty!");

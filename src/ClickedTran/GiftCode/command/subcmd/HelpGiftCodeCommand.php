@@ -17,7 +17,6 @@ class HelpGiftCodeCommand extends BaseSubCommand {
   }
   
   public function onRun(CommandSender $sender, String $labelUsed, Array $args) : void{
-    assert($sender instanceof Player);
     $sender->sendMessage("   §6> §b§lAll GiftCode Command §6<");
     $sender->sendMessage("§b/giftcode help §7- All GiftCode command!");
     $sender->sendMessage("§b/giftcode create §7- Create GiftCode to data");

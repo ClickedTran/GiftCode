@@ -26,7 +26,6 @@ class CreateGiftCodeCommand extends BaseSubCommand {
   }
   
   public function onRun(CommandSender $sender, String $labelUsed, Array $args) : void{
-    assert($sender instanceof Player);
     if(GiftCode::getInstance()->getCode()->exists($args["giftcode"])){
        $sender->sendMessage("§9[ §4ERROR §9] §cGiftcode already exist. Try again!");
        return;

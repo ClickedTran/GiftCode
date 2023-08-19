@@ -59,6 +59,6 @@ class CreateGiftCodeCommand extends BaseSubCommand {
        return;
     }
     GiftCode::getInstance()->createCode($args["giftcode"], (int)$args["day"], (int)$args["hour"], (int)$args["minute"], (int)$args["second"], $args["type"], (int)$args["amount"]);
-    $sender->sendMessage("§9[ §eSuccessfully §9] You created code §7".$args["giftcode"]." §awith time: §7".$args["day"]." §9day, §7".$args["hour"]." §9hour, §7".$args["minute"]." §9minute, §7".$args["second"]." §9second §aand type of reward §b".$args["type"]." §awith amount §7".$args["amount"]);
+    $sender->sendMessage("§9[ §eSuccessfully §9] §aYou created code §7".$args["giftcode"]." §awith time: §7".$args["day"]." §9day, §7".$args["hour"]." §9hour, §7".$args["minute"]." §9minute, §7".$args["second"]." §9second §aand type of reward §b".$args["type"]." §awith amount §7".$args["amount"]);
   }
 }

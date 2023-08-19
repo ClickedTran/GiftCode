@@ -10,7 +10,6 @@ use onebone\economyapi\EconomyAPI;
 *use onebone\pointapi\PointAPI;
 */
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
 
 use ClickedTran\GiftCode\GiftCode;
 
@@ -129,7 +128,7 @@ class FormManager {
 	public function menuEnterCode(Player $player) : CustomForm{
 	 $giftcode = GiftCode::getInstance()->getCode();
 	 return new CustomForm(
-	  "§l§6> §aGiftCode §6<",
+	  "§l§6> §a§lGiftCode §6<",
 	  [
 	    new Input("giftcode", "", "§7Please input giftcode in here!")
 	  ],
@@ -143,15 +142,16 @@ class FormManager {
 	         $player->sendMessage("§l§9[§4 ERROR §9] §cGiftcode §7".$data["giftcode"]." §cdoes not exist or has expired, please try again!");
 	         return;
 	      }
+	      $code = $data["giftcode"];
 	      $ex = explode(", ", GiftCode::getInstance()->getCode()->getNested($data["giftcode"]. ".player-used"));
 	      if(!in_array($player->getDisplayName(), $ex)){
 	        $im = implode(", ", $ex);
 	        $playerUsed = "$im, " . $player->getDisplayName();
 	        $giftcode->setNested($data["giftcode"]. ".player-used", $playerUsed);
 	        $giftcode->save();
-	        if($giftcode->getNested($data["giftcode"]. ".type") === "EconomyAPI"){
-	           EconomyAPI::getInstance()->addMoney($player, $giftcode->getNested($data["giftcode"]. ".amount"));
-	           $player->sendMessage("§aThe amount §7".$giftcode->getNested($data["giftcode"]. ".amount")." §ahas been added to the account via giftcode §9".$data["giftcode"]."§a!");
+	        if($giftcode->get($code)["type"]=== "EconomyAPI"){
+	           EconomyAPI::getInstance()->addMoney($player, $giftcode->get($code)["amount"]);
+	           $player->sendMessage("§aThe amount §7".$giftcode->get($code)["amount"]." §ahas been added to the account via giftcode §9".$code."§a!");
 	            return;
 	        }
 	        /**
@@ -167,10 +167,10 @@ class FormManager {
 	        *  return;
 	        *}
 	        */
-	        if($giftcode->getNested($data["giftcode"]. ".type") === "BedrockEconomy"){
-	          BedrockEconomyAPI::legacy()->addToPlayerBalance($player->getName(), (int)$giftcode->getNested($data["giftcode"]. ".amount"));
-	          $player->sendMessage("§aThe amount §7".$giftcode->getNested($data["giftcode"]. ".amount")." §ahas been added to the account via giftcode §9".$data["giftcode"]."§a!");
-	          return;
+	        if($giftcode->get($code)["type"]=== "BedrockEconomy"){
+	           BedrockEconomyAPI::legacy()->addToPlayerBalance($player->getName(), (int)$giftcode->get($code)["amount"]);
+	           $player->sendMessage("§aThe amount §7".$giftcode->get($code)["amount"]." §ahas been added to the account via giftcode §9".$code."§a!");
+	            return;
 	        }
 	      }else{
 	        $player->sendMessage("§9[ §4ERROR §9] §cYou have already used this giftcode!");

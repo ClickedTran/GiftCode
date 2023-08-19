@@ -26,7 +26,11 @@ class GiftCodeCommand extends BaseCommand{
 	}
 	
 	public function onRun(CommandSender $sender, String $labelUsed, Array $args): void{
-	  if(count($args) == 0 && $sender instanceof Player){
+	  if(!$sender instanceof Player){
+	      $sender->sendMessage("§9[ §4ERROR §9] §aPlease use in-game");
+	      return;
+	  }
+	  if(count($args) == 0){
 	    if(!Server::getInstance()->isOp($sender->getName()) && !$sender->hasPermission("giftcode.command.menu")){
 	       $form = new FormManager();
 	       $sender->sendForm($form->menuEnterCode($sender));

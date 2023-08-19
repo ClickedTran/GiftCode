@@ -19,7 +19,6 @@ class RemoveGiftCodeCommand extends BaseSubCommand {
   }
   
   public function onRun(CommandSender $sender, String $labelUsed, Array $args) : void{
-    assert($sender instanceof Player);
     if(!GiftCode::getInstance()->getCode()->exists($args["giftcode"])){
        $sender->sendMessage("§9[ §4ERROR §9] §cGiftcode does not exist, please check and try again");
     }

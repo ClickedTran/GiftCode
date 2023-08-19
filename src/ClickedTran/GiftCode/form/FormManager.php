@@ -129,7 +129,7 @@ class FormManager {
 	public function menuEnterCode(Player $player) : CustomForm{
 	 $giftcode = GiftCode::getInstance()->getCode();
 	 return new CustomForm(
-	  "§l§6> §aEnter §bGiftCode §6<",
+	  "§l§6> §aGiftCode §6<",
 	  [
 	    new Input("giftcode", "", "§7Please input giftcode in here!")
 	  ],

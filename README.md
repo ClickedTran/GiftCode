@@ -12,10 +12,16 @@
 - Can't support `items` and `blocks`, (maybe it will be updated to next version of plugin soon!)
 <br>
 
-## 📜Virion
+## 📜Virion & Plugin Supported
+<h3>Virion Supported</h3>
 - Thanks CortexPE for <a href="https://github.com/CortexPE/Commando">Commando</a>
-
+<br>
 - Thanks dktapps for <a href="https://github.com/dktapps-pm-pl/pmforms">pmforms</a>
+<br>
+<h3>Plugin Supported</h3>
+- Thank onebone/poggit-orphanage for <a href="https://poggit.pmmp.io/p/EconomyAPI">EconomyAPI</a>
+<br>
+- Thank cooldogepm for <a href="https://github.com/cooldogepm/BedrockEconomy">BedrockEconomy</a>
 <br>
 
 ## 📚For Developer

@@ -20,7 +20,6 @@ class TaskManager extends Task {
 		$giftcode = $this->plugin->getCode();
 		foreach ($giftcode->getAll() as $code => $key) {
 			if ($giftcode->exists($code)) {
-				$type = $key["type"];
 				$amount = $key["amount"];
 				$playerUsed = $key["player-used"];
 				$exprire = $key["exprire"];
@@ -57,7 +56,6 @@ class TaskManager extends Task {
 							"minute" => $minute,
 							"second" => $second
 						],
-						"type" => $type,
 						"amount" => $amount,
 						"player-used" => $playerUsed
 					]

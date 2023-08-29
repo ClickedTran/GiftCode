@@ -1,0 +1,5 @@
+# Economy Options
+economy:
+  # Economy provider to use
+  # Supported options:  "bedrockeconomy", "economyapi", "xp"
+  provider: bedrockeconomy

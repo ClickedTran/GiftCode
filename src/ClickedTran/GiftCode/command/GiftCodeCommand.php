@@ -9,7 +9,6 @@ use pocketmine\player\Player;
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
 
-use ClickedTran\GiftCode\GiftCode;
 use ClickedTran\GiftCode\command\subcmd\HelpGiftCodeCommand;
 use ClickedTran\GiftCode\command\subcmd\CreateGiftCodeCommand;
 use ClickedTran\GiftCode\command\subcmd\RemoveGiftCodeCommand;

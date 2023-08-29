@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace ClickedTran\GiftCode;
 
+use DaPigGuy\libPiggyEconomy\exceptions\MissingProviderDependencyException;
+use DaPigGuy\libPiggyEconomy\exceptions\UnknownProviderException;
+use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
+use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
+
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
@@ -21,17 +26,30 @@ class GiftCode extends PluginBase implements Listener {
 	/** @var GiftCode */
 	public static $instance;
 
+	/** @var EconomyProvider */
+	private $economyProvider;
+
 	public static function getInstance(): GiftCode {
 		return self::$instance;
 	}
 
-	public function onEnable(): void {
+	/**
+	 * @throws MissingProviderDependencyException
+	 * @throws UnknownProviderException
+	 */
+	protected function onEnable(): void {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		if (!PacketHooker::isRegistered()) PacketHooker::register($this);
 		$this->getServer()->getCommandMap()->register("GiftCode", new GiftCodeCommand($this, "giftcode", "§o§7Giftcode Commands", ["code"]));
 
 		$this->getScheduler()->scheduleRepeatingTask(new TaskManager($this), 20);
 		self::$instance = $this;
+		libPiggyEconomy::init();
+		$this->economyProvider = libPiggyEconomy::getProvider($this->getConfig()->get("economy"));
+	}
+
+	public function getEconomyProvider(): EconomyProvider {
+		return $this->economyProvider;
 	}
 
 	public function onDisable(): void {
@@ -46,9 +64,9 @@ class GiftCode extends PluginBase implements Listener {
 	}
 
 	/**
-	 * @param string $name, int $time, int $hour, int $minute, int $second, string $type, int $amount
+	 * @param string $name, int $time, int $hour, int $minute, int $second, int $amount
 	 */
-	public function createCode(string $name, int $day, int $hour, int $minute, int $second, string $type, int $amount) {
+	public function createCode(string $name, int $day, int $hour, int $minute, int $second, int $amount) {
 		$this->getCode()->set($name, [
 			"exprire" => [
 				"day" => $day,
@@ -56,7 +74,6 @@ class GiftCode extends PluginBase implements Listener {
 				"minute" => $minute,
 				"second" => $second
 			],
-			"type" => "$type",
 			"amount" => $amount,
 			"player-used" => ""
 		]);

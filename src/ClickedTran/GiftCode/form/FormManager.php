@@ -6,9 +6,6 @@ namespace ClickedTran\GiftCode\form;
 
 use pocketmine\player\Player;
 
-use onebone\economyapi\EconomyAPI;
-use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-
 use ClickedTran\GiftCode\GiftCode;
 
 use dktapps\pmforms\{MenuForm, CustomForm, CustomFormResponse, MenuOption};
@@ -65,17 +62,12 @@ class FormManager {
 				new Slider("hour", "Hour", 0, 24),
 				new Slider("minute", "Minute", 0, 60),
 				new Slider("second", "Second", 0, 60),
-				new Input("currency", "Currency:", "Input type economy in here, Example: EconomyAPI, BedrockEconomy"),
 				new Input("amount", "Amount:", "Enter the amount of money you want")
 			],
 			function (Player $player, CustomFormResponse $data) use ($giftcode): void {
 				$data = $data->getAll();
 				if (!isset($data["giftcode"])) {
 					$player->sendMessage("§cPlease input the giftcode!");
-					return;
-				}
-				if (!isset($data["currency"]) or ($data["currency"] != "EconomyAPI" && $data["currency"] != "BedrockEconomy")) {
-					$player->sendMessage("§9[ §4ERROR §9] §cPlease input economy type. all available: §7EconomyAPI, BedrockEconomy ");
 					return;
 				}
 				if (!isset($data["amount"]) && !is_numeric($data["amount"])) {
@@ -86,8 +78,8 @@ class FormManager {
 					$player->sendMessage("§cGiftcode §7" . $data["giftcode"] . " §calready. Please recreate!");
 					return;
 				}
-				GiftCode::getInstance()->createCode($data["giftcode"], (int)$data["day"], (int)$data["hour"], (int)$data["minute"], (int)$data["second"], $data["currency"], (int)$data["amount"]);
-				$player->sendMessage("§aSuccessfully created code §7" . $data["giftcode"] . " §awith time: §7" . $data["day"] . " §9day, §7" . $data["hour"] . " §9hour, §7" . $data["minute"] . " §9minute, §7" . $data["second"] . " §9second §aand type of reward §b" . $data["currency"] . " §awith amount §7" . $data["amount"]);
+				GiftCode::getInstance()->createCode($data["giftcode"], (int)$data["day"], (int)$data["hour"], (int)$data["minute"], (int)$data["second"], (int)$data["amount"]);
+				$player->sendMessage("§aSuccessfully created code §7" . $data["giftcode"] . " §awith time: §7" . $data["day"] . " §9day, §7" . $data["hour"] . " §9hour, §7" . $data["minute"] . " §9minute, §7" . $data["second"] . " §9second §awith amount §7" . $data["amount"]);
 			},
 			function (Player $player): void {
 				$player->sendMessage("§cYou're exit the create giftcode!");
@@ -147,29 +139,8 @@ class FormManager {
 					$playerUsed = "$im, " . $player->getDisplayName();
 					$giftcode->setNested($data["giftcode"] . ".player-used", $playerUsed);
 					$giftcode->save();
-					if ($giftcode->get($code)["type"] === "EconomyAPI") {
-						EconomyAPI::getInstance()->addMoney($player, $giftcode->get($code)["amount"]);
-						$player->sendMessage("§aThe amount §7" . $giftcode->get($code)["amount"] . " §ahas been added to the account via giftcode §9" . $code . "§a!");
-						return;
-					}
-					/**
-					 * CoinAPI and PointAPI not often used in international markets (only popular in Vietnam)
-					 *if($giftcode->getNested($data["giftcode"]. ".type") === "PointAPI"){
-					 *  PointAPI::getInstance()->addPoint($player, $giftcode->getNested($data["giftcode"]. ".amount"));
-					 *  $player->sendMessage("§aThe amount §7".$giftcode->getNested($data["giftcode"]. ".amount")." §ahas been added to the account via giftcode §9".$data["giftcode"]."§a!");
-					 *    return;
-					 *}
-					 *if($giftcode->getNested($data["giftcode"]. ".type") === "CoinAPI"){
-					 *   CoinAPI::getInstance()->addCoin($player, $giftcode->getNested($data["giftcode"]. ".amount"));
-					 *  $player->sendMessage("§aThe amount §7".$giftcode->getNested($data["giftcode"]. ".amount")." §ahas been added to the account via giftcode §9".$data["giftcode"]."§a!");
-					 *  return;
-					 *}
-					 */
-					if ($giftcode->get($code)["type"] === "BedrockEconomy") {
-						BedrockEconomyAPI::legacy()->addToPlayerBalance($player->getName(), (int)$giftcode->get($code)["amount"]);
-						$player->sendMessage("§aThe amount §7" . $giftcode->get($code)["amount"] . " §ahas been added to the account via giftcode §9" . $code . "§a!");
-						return;
-					}
+					GiftCode::getInstance()->getEconomyProvider()->giveMoney($player, $giftcode->get($code)["amount"]);
+					$player->sendMessage("§aThe amount §7" . $giftcode->get($code)["amount"] . " §ahas been added to the account via giftcode §9" . $code . "§a!");
 				} else {
 					$player->sendMessage("§9[ §4ERROR §9] §cYou have already used this giftcode!");
 				}

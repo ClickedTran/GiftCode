@@ -38,6 +38,7 @@ class GiftCode extends PluginBase implements Listener {
 	 * @throws UnknownProviderException
 	 */
 	protected function onEnable(): void {
+		$this->saveDefaultConfig();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		if (!PacketHooker::isRegistered()) PacketHooker::register($this);
 		$this->getServer()->getCommandMap()->register("GiftCode", new GiftCodeCommand($this, "giftcode", "§o§7Giftcode Commands", ["code"]));

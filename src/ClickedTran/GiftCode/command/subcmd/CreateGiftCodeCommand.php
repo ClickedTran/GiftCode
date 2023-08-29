@@ -19,7 +19,7 @@ class CreateGiftCodeCommand extends BaseSubCommand {
 		$this->registerArgument(2, new IntegerArgument("hour", true));
 		$this->registerArgument(3, new IntegerArgument("minute", true));
 		$this->registerArgument(4, new IntegerArgument("second", true));
-		$this->registerArgument(6, new IntegerArgument("amount", true));
+		$this->registerArgument(5, new IntegerArgument("amount", true));
 	}
 
 	public function onRun(CommandSender $sender, String $labelUsed, array $args): void {

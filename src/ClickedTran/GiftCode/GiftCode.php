@@ -49,15 +49,14 @@ class GiftCode extends PluginBase implements Listener{
 	/**
   * @param string $name, int $time, int $hour, int $minute, int $second, string $type, int $amount
 	*/
-	public function createCode(string $name, int $day, int $hour, int $minute, int $second, string $type, int $amount){
-	  $this->getCode()->set($name, [
+	public function createCode(string $name, int $day, int $hour, int $minute, int $second, string $command){
+	  $this->getCode()->set(strtolower($name), [
 	    "exprire" => ["day" => $day,
 	                  "hour" => $hour,
 	                  "minute" => $minute,
 	                  "second" => $second
 	                  ],
-	    "type" => "$type",
-	    "amount" => $amount,
+	     "command" => $command,
 	    "player-used" => ""
 	    ]);
 	  $this->getCode()->save();

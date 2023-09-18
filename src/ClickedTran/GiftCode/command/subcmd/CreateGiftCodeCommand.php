@@ -21,17 +21,16 @@ class CreateGiftCodeCommand extends BaseSubCommand {
     $this->registerArgument(2, new IntegerArgument("hour", true));
     $this->registerArgument(3, new IntegerArgument("minute", true));
     $this->registerArgument(4, new IntegerArgument("second", true));
-    $this->registerArgument(5, new RawStringArgument("type", true));
-    $this->registerArgument(6, new IntegerArgument("amount", true));
+    $this->registerArgument(5, new RawStringArgument("command", true));
   }
   
   public function onRun(CommandSender $sender, String $labelUsed, Array $args) : void{
-    if(GiftCode::getInstance()->getCode()->exists($args["giftcode"])){
-       $sender->sendMessage("§9[ §4ERROR §9] §cGiftcode already exist. Try again!");
+    if(!isset($args["giftcode"])){
+       $sender->sendMessage("§9[ §4ERROR §9] §cPlease input new giftcode");
        return;
     }
-    if(!isset($args["giftcode"])){
-       $sender->sendMessage("§9[ §4ERROR §9] §cPlease add giftcode");
+    if(GiftCode::getInstance()->getCode()->exists($args["giftcode"])){
+       $sender->sendMessage("§9[ §4ERROR §9] §cGiftcode already exist. Try again!");
        return;
     }
     if(!is_numeric($args["day"])){
@@ -50,15 +49,12 @@ class CreateGiftCodeCommand extends BaseSubCommand {
        $sender->sendMessage("§9[ §4ERROR §9] §cPlease add second expired for giftcode. Max number is §760!");
        return;
     }
-    if(!isset($args["type"]) or ($args["type"] != "EconomyAPI" and /**$args["type"] != "PointAPI" and $args["type"] != "CoinAPI" and*/ $args["type"] != "BedrockEconomy")){
-       $sender->sendMessage("§9[ §4ERROR §9] §cPlease choose type. All types are available: §7EconomyAPI, BedrockEconomy");
+    if(!isset($args["command"])){
+       $sender->sendMessage("§9[ §4ERROR §9]§r§c Please input command!");
        return;
     }
-    if(!is_numeric($args["amount"])){
-       $sender->sendMessage("§9[ §4ERROR §9] §cPlease add amount for reward giftcode!");
-       return;
-    }
-    GiftCode::getInstance()->createCode($args["giftcode"], (int)$args["day"], (int)$args["hour"], (int)$args["minute"], (int)$args["second"], $args["type"], (int)$args["amount"]);
-    $sender->sendMessage("§9[ §eSuccessfully §9] §aYou created code §7".$args["giftcode"]." §awith time: §7".$args["day"]." §9day, §7".$args["hour"]." §9hour, §7".$args["minute"]." §9minute, §7".$args["second"]." §9second §aand type of reward §b".$args["type"]." §awith amount §7".$args["amount"]);
+    
+    GiftCode::getInstance()->createCode($args["giftcode"], (int)$args["day"], (int)$args["hour"], (int)$args["minute"], (int)$args["second"], $args["command"]);
+    $sender->sendMessage("§9[ §eSuccessfully §9] You created code §7". strtolower($args["giftcode"])." §awith time: §7".$args["day"]." §9day, §7".$args["hour"]." §9hour, §7".$args["minute"]." §9minute, §7".$args["second"]." §9second §awith command §b". $args["command"]);
   }
 }

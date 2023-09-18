@@ -12,16 +12,11 @@
 - Can't support `items` and `blocks`, (maybe it will be updated to next version of plugin soon!)
 <br>
 
-## 📜Virion & Plugin Supported
+## 📜Virion Supported
 <h3>Virion Supported</h3>
-- Thanks CortexPE for <a href="https://github.com/CortexPE/Commando">Commando</a>
+- [Commando]("https://github.com/CortexPE/Commando") (CortexPE)
 <br>
-- Thanks dktapps for <a href="https://github.com/dktapps-pm-pl/pmforms">pmforms</a>
-<br>
-<h3>Plugin Supported</h3>
-- Thank onebone/poggit-orphanage for <a href="https://poggit.pmmp.io/p/EconomyAPI">EconomyAPI</a>
-<br>
-- Thank cooldogepm for <a href="https://github.com/cooldogepm/BedrockEconomy">BedrockEconomy</a>
+- [pmforms](https://github.com/dktapps-pm-pl/pmforms") (dktapps)
 <br>
 
 ## 📚For Developer
@@ -34,7 +29,7 @@
  >- Create New GiftCode:
 
  ```php
-  GiftCode::getInstance()->createCode(string $name, int $day, int $hour, int $minute, int $second, string $type, int $amount);
+  GiftCode::getInstance()->createCode(string $name, int $day, int $hour, int $minute, int $second, string $command);
 ```
 
  >- Remove GiftCode:

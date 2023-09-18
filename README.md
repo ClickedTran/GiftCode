@@ -6,10 +6,7 @@
 </div>
 
 ## 📖Feature
-
 - This is a Plugin that allows Admin to generate a giftcode for the server with optional time and rewards
-- Supported currencies: EconomyAPI, BedrockEconomy
-- Can't support `items` and `blocks`, (maybe it will be updated to next version of plugin soon!)
 <br>
 
 ## 📜Virion Supported

@@ -40,4 +40,9 @@ class GiftCodeCommand extends BaseCommand{
 	    }
 	  }
 	}
+
+	public function getPermission()
+    {
+        // TODO: Implement getPermission() method.
+    }
 }

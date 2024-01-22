@@ -21,8 +21,7 @@ class TaskManager extends Task {
     $giftcode = $this->plugin->getCode();
     foreach($giftcode->getAll() as $code => $key){
     if($giftcode->exists($code)){
-      $type = $key["type"];
-      $amount = $key["amount"];
+      $command = $key["command"];
       $playerUsed = $key["player-used"];
       $exprire = $key["exprire"];
       $day = $exprire["day"];
@@ -54,8 +53,7 @@ class TaskManager extends Task {
                      "hour" => $hour,
                      "minute" => $minute,
                      "second" => $second],
-      "type" => $type,
-      "amount" => $amount,
+      "command" => $command,
       "player-used" => $playerUsed
       ]);
       $giftcode->save();

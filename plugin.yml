@@ -1,7 +1,7 @@
 name: GiftCode
 main: ClickedTran\GiftCode\GiftCode
 api: 5.0.0
-version: 1.0.5
+version: 1.0.6
 author: ClickedTran
 
 permissions:

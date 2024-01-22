@@ -12,6 +12,7 @@
 ## 📜Virion Supported
 - [Commando](https://github.com/CortexPE/Commando) (CortexPE)
 - [pmforms](https://github.com/dktapps-pm-pl/pmforms) (dktapps)
+- [SimplePacketHandler](https://github.com/Muqsit/SimplePacketHandler) (Muqsit)
 <br>
 
 ## 📚For Developer
